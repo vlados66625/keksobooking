@@ -20,15 +20,15 @@ const checksIsPolindrome = (text) => {
 // };
 
 const getNumber = (value) => {
-  value = value.toString();
+  value = value.toString().replaceAll(' ', '');
   let valueNumber = '';
   for (let i = 0; i < value.length; i++) {
-    if (!isNaN(value.at(i))) {
+    if (!isNaN(value.at(i)) || value.at(i) === '-') {
       valueNumber += value.at(i)
-    }; symbol
+    };
   }
 
-  return Number(valueNumber);
+  return valueNumber === '' ? NaN : Number(valueNumber);
 }
 
 // const getNumber = (value) => {
