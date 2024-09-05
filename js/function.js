@@ -3,7 +3,7 @@ const checksIsPolindrome = (text) => {
   let textReverse = '';
   const textLowerNoSpace = text.replaceAll(' ', '').toLowerCase();
   for (let i = 1; i <= textLowerNoSpace.length; i++) {
-    textReverse += textLowerNoSpace.at(-i)
+    textReverse += textLowerNoSpace.at(-i);
   }
   return textReverse === textLowerNoSpace;
 };
@@ -24,12 +24,12 @@ const getNumber = (value) => {
   let valueNumber = '';
   for (let i = 0; i < value.length; i++) {
     if (!isNaN(value.at(i)) || value.at(i) === '-') {
-      valueNumber += value.at(i)
-    };
+      valueNumber += value.at(i);
+    }
   }
 
   return valueNumber === '' ? NaN : Number(valueNumber);
-}
+};
 
 // const getNumber = (value) => {
 //   const valueNumber = value
@@ -56,13 +56,13 @@ const addLimitedString = (text, limited, string) => {
 
     for (let i = 1; i <= ADD_STRING_TIMES; i++) {
       newText = string + newText;
-    };
+    }
 
-    newText = string.slice(0, ADD_STRING_SYMBOL) + newText
+    newText = string.slice(0, ADD_STRING_SYMBOL) + newText;
   }
 
-  return newText
-}
+  return newText;
+};
 
 const getRandomNumber = (min, max, afterCommaNumbers) => {
   if (min >= max) {
@@ -70,5 +70,5 @@ const getRandomNumber = (min, max, afterCommaNumbers) => {
   }
   const randomValue = min + (max - min) * Math.random();
 
-  return Number(randomNumber.toFixed(afterCommaNumbers))
-}
+  return Number(randomValue.toFixed(afterCommaNumbers));
+};
