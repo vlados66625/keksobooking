@@ -8,6 +8,8 @@ const checksIsPolindrome = (text) => {
   return textReverse === textLowerNoSpace;
 };
 
+checksIsPolindrome('sdfsdfs')
+
 // const checksIsPolindrome = (text) => {
 // Приводим текст к строке, убираем пробелы и приводим к нижнему регистру
 // const textLowerNoSpace = text.toString().replace(/\s/g, '').toLowerCase();
@@ -72,3 +74,23 @@ const getRandomNumber = (min, max, afterCommaNumbers) => {
 
   return Number(randomValue.toFixed(afterCommaNumbers));
 };
+
+const numbers = [5, 12, 2, 34, 32, 16];
+
+const sortingMassive = (numbers) => {
+  let minValue;
+
+  for (let i = 0; i < numbers.length; i++) {
+  minValue = numbers[i]
+
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (minValue > numbers[j]) {
+        minValue = numbers[j];
+        numbers[j] = numbers[i];
+        numbers[i] = minValue;
+      }
+    }
+  }
+
+  return numbers;
+}
