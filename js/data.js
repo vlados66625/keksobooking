@@ -49,7 +49,7 @@ const generateData = () => {
   const LAT = getRandomNumber(35.65000, 35.70000, 5);
   const LNG = getRandomNumber(139.70000, 139.80000, 5);
 
-  const DATA = {
+  const data = {
     author: {
       avatar: `img/avatars/user${getRandomIntegerWithZero(1, 10)}.png`,
     },
@@ -72,7 +72,7 @@ const generateData = () => {
     }
   };
 
-  return DATA;
+  return data;
 };
 
 const generateApartmentsData = () => Array.from({ length: 10 }, generateData);

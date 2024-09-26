@@ -14,7 +14,7 @@ const getRandomNumber = (min, max, afterCommaNumbers) => {
 const getRandomItemArray = (array) => array[getRandomNumber(0, array.length - 1, 0)];
 
 const getRandomItemsArray = (array) => {
-  const lengthNewArray = getRandomNumber(1, array.length - 1, 0);
+  const lengthNewArray = getRandomNumber(1, array.length, 0);
   const newArray = [];
   while (newArray.length < lengthNewArray) {
     const newArrayItem = getRandomItemArray(array);
