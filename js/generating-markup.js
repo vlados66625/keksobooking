@@ -1,3 +1,5 @@
+const ALERT_SHOW_TIME = 3500;
+
 const typeAccommodation = {
   flat: 'Квартира',
   bungalow: 'Бунгало',
@@ -85,4 +87,24 @@ const generatingPopup = (data) => {
   }
 };
 
-export { generatingPopup };
+const generateErrorMessage = (message, parent) => {
+  const textError = document.createElement('p');
+  textError.style.position = 'absolute';
+  textError.style.zIndex = '1001';
+  textError.style.top = '0';
+  textError.style.transform = 'translateY(-100%)';
+  textError.style.width = '100%';
+  textError.style.margin = '0';
+  textError.style.padding = '15px 30px';
+  textError.style.fontSize = '20px';
+  textError.style.textAlign = 'center';
+  textError.style.color = 'red';
+  textError.style.backgroundColor = 'white';
+  textError.textContent = message;
+  parent.prepend(textError);
+  setTimeout(() => {
+    parent.removeChild(textError);
+  }, ALERT_SHOW_TIME);
+};
+
+export { generatingPopup, generateErrorMessage };

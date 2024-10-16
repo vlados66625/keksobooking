@@ -1,9 +1,13 @@
-import { generateApartmentsData } from './data.js';
-import { generatingPopup } from './generating-popup.js';
-import { toggleForms, deactivatedForm } from './toggle-form.js';
-import './form-validate.js';
-import { generateMap } from './map.js';
+import { toggleForm } from './toggle-form.js';
+import './form.js';
+import { generateMap, generateUsualMarker } from './map.js';
 import { createSlider } from './slider.js';
+import { getData } from './api.js';
+import { generateErrorMessage } from './generating-markup.js';
+
+const mapFiltersForm = document.querySelector('.map__filters');
+const adForm = document.querySelector('.ad-form');
+const filter = document.querySelector('.map__filters-container');
 
 const SliderSettings = {
   MIN_VALUE: 0,
@@ -13,7 +17,19 @@ const SliderSettings = {
   CONNECT_VALUE: 'lower'
 };
 
-
-const data = generateApartmentsData();
-generateMap(data);
+toggleForm(mapFiltersForm, true);
+toggleForm(adForm, true);
 createSlider(SliderSettings);
+generateMap();
+
+getData('/data', 'Ошибка загрузки данных')
+  .then((data) => {
+    generateUsualMarker(data);
+    toggleForm(mapFiltersForm, false);
+
+  })
+  .catch((err) => {
+    generateErrorMessage(err.message, filter);
+  });
+
+

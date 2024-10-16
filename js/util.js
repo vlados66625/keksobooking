@@ -34,4 +34,15 @@ const getRandomIntegerWithZero = (min, max) => {
   return value.toString();
 };
 
-export { getRandomNumber, getRandomItemArray, getRandomItemsArray, getRandomIntegerWithZero };
+const isEscape = (evt) => evt.key === 'Escape';
+
+const synchronizeFields = (field1, field2) => {
+  field1.addEventListener('change', () => {
+    field2.value = field1.value;
+  });
+  field2.addEventListener('change', () => {
+    field1.value = field2.value;
+  });
+};
+
+export { getRandomNumber, getRandomItemArray, getRandomItemsArray, getRandomIntegerWithZero, isEscape, synchronizeFields };

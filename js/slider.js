@@ -15,6 +15,7 @@ const createSlider = ({ MIN_VALUE, MAX_VALUE, START_VALUE, STEP_VALUE, CONNECT_V
   sliderElement.noUiSlider.on('update', () => {
     priceFields.value = Math.round(sliderElement.noUiSlider.get());
   });
+  document.querySelector('#price').value = '';
 };
 
 

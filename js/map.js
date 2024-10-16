@@ -1,5 +1,6 @@
-import { toggleForms, deactivatedForm } from './toggle-form.js';
-import { generatingPopup } from './generating-popup.js';
+import { toggleForm } from './toggle-form.js';
+import { generatingPopup } from './generating-markup.js';
+
 
 const TILE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -8,14 +9,15 @@ const cityCenter = {
   lat: 35.68065,
   lng: 139.75742,
 };
+
 const addressField = document.querySelector('#address');
+const adForm = document.querySelector('.ad-form');
+const map = L.map('map-canvas');
 
-const generateMap = (data) => {
-  toggleForms(deactivatedForm, true);
-
-  const map = L.map('map-canvas')
+const generateMap = () => {
+  map
     .on('load', () => {
-      toggleForms(deactivatedForm, false);
+      toggleForm(adForm, false);
     })
     .setView(cityCenter, ZOOM);
 
@@ -44,7 +46,14 @@ const generateMap = (data) => {
     addressField.value = `lat: ${lat}, lng: ${lng}`;
   });
 
+  adForm.addEventListener('reset', () => {
+    mainMarker.setLatLng(cityCenter);
+    map.closePopup();
+  });
+};
 
+
+const generateUsualMarker = (data) => {
   const usualIcon = L.icon({
     iconUrl: './img/pin.svg',
     iconSize: [40, 40],
@@ -61,4 +70,4 @@ const generateMap = (data) => {
   });
 };
 
-export { generateMap };
+export { generateMap, generateUsualMarker };
