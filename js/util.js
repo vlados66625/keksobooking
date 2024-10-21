@@ -45,4 +45,13 @@ const synchronizeFields = (field1, field2) => {
   });
 };
 
-export { getRandomNumber, getRandomItemArray, getRandomItemsArray, getRandomIntegerWithZero, isEscape, synchronizeFields };
+
+const debounce = (cb, timeoutDelay = 500) => {
+  let timeout;
+  return (...rest) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => cb.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { getRandomNumber, getRandomItemArray, getRandomItemsArray, getRandomIntegerWithZero, isEscape, synchronizeFields, debounce };

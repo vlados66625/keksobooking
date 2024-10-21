@@ -1,8 +1,8 @@
 import { sendData } from './api.js';
 import { isEscape, synchronizeFields } from './util.js';
+import { mapFiltersForm } from './generate-usual-marker.js';
 
 const adForm = document.querySelector('.ad-form');
-const mapFiltersForm = document.querySelector('.map__filters');
 const adFormSubmitButton = adForm.querySelector('.ad-form__submit');
 const roomNumberField = adForm.querySelector('#room_number');
 const capacityField = adForm.querySelector('#capacity');
@@ -117,22 +117,26 @@ const showMessage = (message, shouldAutoRemove, buttonClass) => () => {
 const showMessageonSuccess = showMessage(successMessage, true);
 const showMessageonError = showMessage(errorMessage, false, 'error__button');
 
-adForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+const handleradFormSubmit = () => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
 
-  if (pristine.validate()) {
-    adFormSubmitButton.setAttribute('disabled', 'true');
-    sendData('', 'Ошибка отправки данных', adForm)
-      .then(() => {
-        showMessageonSuccess();
-        adForm.reset();
-        mapFiltersForm.reset();
-      })
-      .catch(() => {
-        showMessageonError();
-      })
-      .finally(() => {
-        adFormSubmitButton.removeAttribute('disabled');
-      });
-  }
-});
+    if (pristine.validate()) {
+      adFormSubmitButton.setAttribute('disabled', 'true');
+      sendData('', 'Ошибка отправки данных', adForm)
+        .then(() => {
+          showMessageonSuccess();
+          adForm.reset();
+          mapFiltersForm.reset();
+        })
+        .catch(() => {
+          showMessageonError();
+        })
+        .finally(() => {
+          adFormSubmitButton.removeAttribute('disabled');
+        });
+    }
+  });
+}
+
+export { handleradFormSubmit, adForm };

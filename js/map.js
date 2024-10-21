@@ -1,6 +1,5 @@
 import { toggleForm } from './toggle-form.js';
-import { generatingPopup } from './generating-markup.js';
-
+import { adForm } from './form.js';
 
 const TILE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -11,7 +10,6 @@ const cityCenter = {
 };
 
 const addressField = document.querySelector('#address');
-const adForm = document.querySelector('.ad-form');
 const map = L.map('map-canvas');
 
 const generateMap = () => {
@@ -52,22 +50,4 @@ const generateMap = () => {
   });
 };
 
-
-const generateUsualMarker = (data) => {
-  const usualIcon = L.icon({
-    iconUrl: './img/pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-  });
-
-  data.forEach((dwelling, index) => {
-    const usualMarker = L.marker(
-      dwelling.location,
-      { icon: usualIcon });
-    usualMarker
-      .addTo(map)
-      .bindPopup(generatingPopup(data).querySelectorAll('.popup')[index]);
-  });
-};
-
-export { generateMap, generateUsualMarker };
+export { generateMap, map };

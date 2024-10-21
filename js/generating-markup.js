@@ -45,7 +45,7 @@ const generatingPopup = (data) => {
       addsDataTextContent(popupClone.querySelector('.popup__text--price'), textPrice);
       const textType = itemData?.offer?.type ? typeAccommodation[itemData.offer.type] : null;
       addsDataTextContent(popupClone.querySelector('.popup__type'), textType);
-      const textCapacity = itemData?.offer?.rooms && itemData?.offer?.guests ? `${itemData.offer.rooms} комнаты для ${itemData.offer.guests} гостей` : null;
+      const textCapacity = itemData?.offer?.rooms && itemData?.offer?.guests ? `${itemData.offer.rooms} комнат${itemData.offer.rooms === 1 ? 'а' : 'ы'} для ${itemData.offer.guests} гост${itemData.offer.guests === 1 ? 'я' : 'ей'}` : null;
       addsDataTextContent(popupClone.querySelector('.popup__text--capacity'), textCapacity);
       const textTime = itemData?.offer?.checkin && itemData?.offer?.checkout ? `Заезд после ${itemData.offer.checkin}, выезд до ${itemData.offer.checkout}` : null;
       addsDataTextContent(popupClone.querySelector('.popup__text--time'), textTime);
