@@ -295,15 +295,21 @@ fieldset {
   align-items: center;
 
   margin-right: 10px;
-  padding: 0 15px;
 
   width: 70px;
   height: 70px;
 
   text-align: center;
+  justify-content: center;
+  flex-shrink: 0;
 
   border-radius: 5px;
   background-color: #dadada;
+  overflow: hidden;
+}
+
+.ad-form-header__preview img {
+  object-fit: contain;
 }
 
 .ad-form__field {
@@ -598,12 +604,17 @@ fieldset {
 .ad-form__photo {
   margin-right: 10px;
   margin-bottom: 10px;
+  overflow: hidden;
 
   width: 70px;
   height: 70px;
 
   background-color: #e4e4de;
   border-radius: 5px;
+}
+
+.ad-form__photo img {
+  object-fit: contain;
 }
 
 .ad-form__element--submit {

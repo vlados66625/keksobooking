@@ -1,8 +1,14 @@
 import { sendData } from './api.js';
 import { isEscape, synchronizeFields } from './util.js';
 import { mapFiltersForm } from './generate-usual-marker.js';
+import { showsPreviewPhoto } from './shows-preview-photo.js';
+
 
 const adForm = document.querySelector('.ad-form');
+const avatarField = adForm.querySelector('#avatar');
+const avatarPreview = adForm.querySelector('.ad-form-header__preview img');
+const imagesField = adForm.querySelector('#images');
+const imagesPreview = adForm.querySelector('.ad-form__photo img');
 const adFormSubmitButton = adForm.querySelector('.ad-form__submit');
 const roomNumberField = adForm.querySelector('#room_number');
 const capacityField = adForm.querySelector('#capacity');
@@ -34,6 +40,17 @@ const HousingTypeMinValue = {
   'house': 5000,
   'palace': 10000
 };
+
+avatarField.addEventListener('change', () => {
+  showsPreviewPhoto(avatarField, avatarPreview);
+  avatarPreview.style.width = '100%';
+  avatarPreview.style.height = '100%';
+});
+
+imagesField.addEventListener('change', () => {
+  showsPreviewPhoto(imagesField, imagesPreview);
+  imagesPreview.classList.remove('visually-hidden');
+});
 
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
@@ -117,6 +134,14 @@ const showMessage = (message, shouldAutoRemove, buttonClass) => () => {
 const showMessageonSuccess = showMessage(successMessage, true);
 const showMessageonError = showMessage(errorMessage, false, 'error__button');
 
+adForm.addEventListener('reset', () => {
+  imagesPreview.classList.add('visually-hidden');
+  avatarPreview.src = 'img/muffin-grey.svg';
+  avatarPreview.style.width = '40px';
+  avatarPreview.style.height = '44px';
+});
+
+
 const handleradFormSubmit = () => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -137,6 +162,6 @@ const handleradFormSubmit = () => {
         });
     }
   });
-}
+};
 
 export { handleradFormSubmit, adForm };
