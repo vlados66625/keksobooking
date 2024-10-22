@@ -52,6 +52,10 @@ imagesField.addEventListener('change', () => {
   imagesPreview.classList.remove('visually-hidden');
 });
 
+housingTypeField.addEventListener('change', ()=>{
+  priceField.placeholder = HousingTypeMinValue[housingTypeField.value]
+});
+
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
   errorClass: 'ad-form__element--invalid',

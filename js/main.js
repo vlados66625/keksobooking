@@ -8,12 +8,13 @@ import { generateErrorMessage } from './generating-markup.js';
 import { debounce } from './util.js';
 
 const filter = document.querySelector('.map__filters-container');
+const USAGE_TIMER = 500;
 
 const SliderSettings = {
   MIN_VALUE: 0,
   MAX_VALUE: 100000,
-  START_VALUE: 5000,
-  STEP_VALUE: 100,
+  START_VALUE: 1000,
+  STEP_VALUE: 500,
   CONNECT_VALUE: 'lower'
 };
 
@@ -26,7 +27,7 @@ handleradFormSubmit();
 getData('/data', 'Ошибка загрузки данных')
   .then((data) => {
     generateUsualMarker(data);
-    handlerFilterFormChange(debounce(() => generateUsualMarker(data)), 300);
+    handlerFilterFormChange(debounce(() => generateUsualMarker(data)), USAGE_TIMER);
     toggleForm(mapFiltersForm, false);
   })
   .catch((err) => {

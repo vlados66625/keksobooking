@@ -2,6 +2,7 @@ import { map } from './map.js';
 import { generatingPopup } from './generating-markup.js';
 
 const mapFiltersForm = document.querySelector('.map__filters');
+
 const housingTypeFilter = mapFiltersForm.querySelector('#housing-type');
 const housingPriceFilter = mapFiltersForm.querySelector('#housing-price');
 const housingRoomsFilter = mapFiltersForm.querySelector('#housing-rooms');
